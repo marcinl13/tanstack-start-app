@@ -1,4 +1,4 @@
-import { Link } from '@tanstack/react-router';
+import { Link, useRouterState } from '@tanstack/react-router';
 
 import { useState } from 'react';
 import {
@@ -18,6 +18,9 @@ export default function Header() {
   const [groupedExpanded, setGroupedExpanded] = useState<
     Record<string, boolean>
   >({});
+  const location = useRouterState({ select: (s) => s.location });
+
+  if (['/signup', '/login'].includes(location.pathname)) return null;
 
   return (
     <>
